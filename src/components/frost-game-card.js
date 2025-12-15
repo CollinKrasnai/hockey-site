@@ -8,24 +8,47 @@ export class FrostGameCard extends DDDSuper(LitElement) {
 
   static get styles() {
     return [super.styles, css`
-      :host { display: block; margin-bottom: var(--ddd-spacing-4); }
+      :host { 
+        display: block; 
+        margin-bottom: var(--ddd-spacing-4); 
+      }
       .row {
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: var(--ddd-theme-default-white);
-        border-left: 5px solid var(--ddd-theme-default-navy80);
-        padding: var(--ddd-spacing-4);
+        border-left: 6px solid var(--ddd-theme-default-navy80);
+        padding: var(--ddd-spacing-5);
         box-shadow: var(--ddd-boxShadow-sm);
-        border-radius: 4px;
+        border-radius: var(--ddd-radius-sm);
+        border: 1px solid var(--ddd-theme-default-limestoneGray);
       }
-      .date { font-weight: bold; color: var(--ddd-theme-default-coalyGray); }
-      .opp { font-size: var(--ddd-font-size-l); font-weight: bold; }
+      .date-group {
+        display: flex;
+        flex-direction: column;
+      }
+      .date { 
+        font-size: var(--ddd-font-size-xs);
+        font-weight: bold; 
+        color: var(--ddd-theme-default-navy80); 
+        text-transform: uppercase;
+        margin-bottom: var(--ddd-spacing-1);
+      }
+      .opp { 
+        font-size: var(--ddd-font-size-l); 
+        font-weight: bold; 
+        /* Forced dark color for visibility */
+        color: var(--ddd-theme-default-coalyGray); 
+      }
       .badge {
         background-color: var(--ddd-theme-default-skyBlue);
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-size: 0.8rem;
+        color: var(--ddd-theme-default-navy80);
+        padding: var(--ddd-spacing-2) var(--ddd-spacing-3);
+        border-radius: var(--ddd-radius-xs);
+        font-weight: bold;
+        font-size: var(--ddd-font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
     `];
   }
@@ -33,8 +56,8 @@ export class FrostGameCard extends DDDSuper(LitElement) {
   render() {
     return html`
       <div class="row">
-        <div>
-          <div class="date">${this.game.date} @ ${this.game.time}</div>
+        <div class="date-group">
+          <div class="date">${this.game.date} • ${this.game.time}</div>
           <div class="opp">vs ${this.game.opponent}</div>
         </div>
         <div class="badge">${this.game.location}</div>
