@@ -1,19 +1,16 @@
-// Vercel Serverless Function: Returns 50 roster/action items
 export default function handler(request, response) {
-  const images = [];
-  const roles = ["Forward", "Defense", "Goalie", "Coach"];
+  const players = [];
+  const positions = ["Forward", "Defense", "Goalie"];
   
-  for (let i = 1; i <= 50; i++) {
-    images.push({
-      id: i,
-      title: `Player #${i}`,
-      description: `Elite level ${roles[i % 4]} for the 2025 season.`,
-      image: `https://picsum.photos/seed/hockey${i}/400/300`, // Dynamic placeholder
-      badge: i % 2 === 0 ? "Varsity" : "Junior Varsity",
-      updated: Date.now()
+  for (let i = 1; i <= 20; i++) {
+    players.push({
+      name: `Player ${i}`,
+      number: `${10 + i}`,
+      position: positions[i % 3],
+      image: `https://picsum.photos/seed/frost${i}/300/300`
     });
   }
 
   response.setHeader('Content-Type', 'application/json');
-  response.status(200).json(images);
+  response.status(200).json(players);
 }
