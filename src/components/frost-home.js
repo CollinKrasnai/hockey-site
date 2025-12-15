@@ -1,62 +1,36 @@
 import { LitElement, html, css } from 'lit';
+import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
+import './frost-hero.js';
 
-export class HeroBanner extends LitElement {
+export class FrostHome extends DDDSuper(LitElement) {
+  static get tag() { return 'frost-home'; }
+
   static get styles() {
-    return css`
-      :host {
-        display: block;
-        position: relative;
-        height: 400px;
-        background-color: var(--ddd-primary);
-        color: var(--ddd-white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        overflow: hidden;
+    return [super.styles, css`
+      :host { display: block; }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--ddd-spacing-6);
       }
-      .bg-image {
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        object-fit: cover;
-        opacity: 0.4;
-        z-index: 1;
+      h3 {
+        color: var(--ddd-theme-default-navy80);
+        font-size: var(--ddd-font-size-xxl);
+        border-bottom: 3px solid var(--ddd-theme-default-skyBlue);
+        padding-bottom: var(--ddd-spacing-2);
+        margin-bottom: var(--ddd-spacing-4);
       }
-      .content {
-        position: relative;
-        z-index: 2;
-        max-width: 800px;
-        padding: 20px;
-      }
-      h1 {
-        font-size: 3rem;
-        margin: 0 0 16px 0;
-        font-family: var(--ddd-font-display);
-      }
-      ::slotted(a) {
-        display: inline-block;
-        background-color: var(--ddd-accent);
-        color: var(--ddd-white);
-        padding: 12px 24px;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 4px;
-        margin-top: 16px;
-        transition: transform 0.2s;
-      }
-      ::slotted(a:hover) {
-        transform: scale(1.05);
-      }
-    `;
+    `];
   }
+
   render() {
     return html`
-      <img class="bg-image" src="https://picsum.photos/id/158/1200/400" alt="Ice Hockey Rink">
-      <div class="content">
-        <h1>Welcome to The Ice Den</h1>
-        <slot></slot>
+      <frost-hero></frost-hero>
+      <div class="container">
+        <h3>Latest News</h3>
+        <p>Welcome to the 2025 season. Tryouts have concluded and our roster is set. Check out the schedule page for upcoming games.</p>
       </div>
     `;
   }
 }
-customElements.define('hero-banner', HeroBanner);
+customElements.define(FrostHome.tag, FrostHome);
