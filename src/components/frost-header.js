@@ -49,12 +49,11 @@ export class FrostHeader extends DDDSuper(LitElement) {
         height: 60px;
       }
 
-      /* Logo & Title Grouping */
       .brand-container {
         display: flex;
         align-items: center;
         gap: var(--ddd-spacing-4);
-        text-decoration: none;
+        text-decoration: none; /* No underline on the logo area */
         color: white;
         cursor: pointer;
       }
@@ -76,10 +75,9 @@ export class FrostHeader extends DDDSuper(LitElement) {
         font-weight: 900;
         letter-spacing: 1px;
         text-transform: uppercase;
-        font-style: italic; /* Adds a bit of sports dynamism */
+        font-style: italic;
       }
 
-      /* Navigation */
       nav {
         display: flex;
         gap: var(--ddd-spacing-6);
@@ -88,14 +86,21 @@ export class FrostHeader extends DDDSuper(LitElement) {
       a {
         position: relative;
         color: var(--ddd-theme-default-white);
-        text-decoration: none;
+        text-decoration: none; /* Explicitly removed underline */
         font-weight: bold;
         font-size: var(--ddd-font-size-ms);
         padding: var(--ddd-spacing-2) 0;
         transition: color 0.3s ease;
       }
 
-      /* Animated Underline Effect (Different from Kiwi) */
+      /* Ensure hover doesn't trigger default underline */
+      a:hover, a:focus, a:active, a:visited {
+        text-decoration: none;
+        color: var(--ddd-theme-default-skyBlue);
+        outline: none;
+      }
+
+      /* Animated Underline Effect */
       a::after {
         content: '';
         position: absolute;
@@ -105,10 +110,6 @@ export class FrostHeader extends DDDSuper(LitElement) {
         left: 0;
         background-color: var(--ddd-theme-default-skyBlue);
         transition: width 0.3s ease-in-out;
-      }
-
-      a:hover {
-        color: var(--ddd-theme-default-skyBlue);
       }
 
       a:hover::after {
@@ -148,7 +149,6 @@ export class FrostHeader extends DDDSuper(LitElement) {
   render() {
     return html`
       <div class="wrapper">
-        <!-- Logo and Title clickable to go home -->
         <a href="/" class="brand-container" @click="${(e) => this._handleClick(e, '/')}">
           <img src="/logo.png" alt="Frostbite Academy Logo" class="logo" />
           <h1>Frostbite Academy</h1>
