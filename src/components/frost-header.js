@@ -32,43 +32,106 @@ export class FrostHeader extends DDDSuper(LitElement) {
         display: block;
         background-color: var(--ddd-theme-default-navy80);
         color: var(--ddd-theme-default-white);
-        padding: var(--ddd-spacing-4);
         position: sticky;
         top: 0;
         z-index: 100;
-        box-shadow: var(--ddd-boxShadow-md);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border-bottom: 4px solid var(--ddd-theme-default-skyBlue);
       }
+      
       .wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
         max-width: 1200px;
         margin: 0 auto;
+        padding: var(--ddd-spacing-4) var(--ddd-spacing-6);
+        height: 60px;
       }
+
+      /* Logo & Title Grouping */
+      .brand-container {
+        display: flex;
+        align-items: center;
+        gap: var(--ddd-spacing-4);
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+      }
+
+      .logo {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .brand-container:hover .logo {
+        transform: rotate(-5deg) scale(1.1);
+      }
+
       h1 {
         margin: 0;
         font-size: var(--ddd-font-size-l);
-        font-weight: var(--ddd-font-weight-black);
+        font-weight: 900;
         letter-spacing: 1px;
+        text-transform: uppercase;
+        font-style: italic; /* Adds a bit of sports dynamism */
       }
+
+      /* Navigation */
       nav {
         display: flex;
-        gap: var(--ddd-spacing-4);
+        gap: var(--ddd-spacing-6);
       }
+
       a {
+        position: relative;
         color: var(--ddd-theme-default-white);
         text-decoration: none;
-        font-weight: var(--ddd-font-weight-medium);
-        padding: var(--ddd-spacing-2);
-        border-radius: var(--ddd-radius-sm);
-        transition: background-color 0.3s;
+        font-weight: bold;
+        font-size: var(--ddd-font-size-ms);
+        padding: var(--ddd-spacing-2) 0;
+        transition: color 0.3s ease;
       }
-      a:hover, a.active {
+
+      /* Animated Underline Effect (Different from Kiwi) */
+      a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: 0;
+        left: 0;
         background-color: var(--ddd-theme-default-skyBlue);
-        color: var(--ddd-theme-default-navy80);
+        transition: width 0.3s ease-in-out;
       }
+
+      a:hover {
+        color: var(--ddd-theme-default-skyBlue);
+      }
+
+      a:hover::after {
+        width: 100%;
+      }
+
+      a.active {
+        color: var(--ddd-theme-default-skyBlue);
+      }
+
+      a.active::after {
+        width: 100%;
+      }
+
       @media (max-width: 768px) {
-        .wrapper { flex-direction: column; gap: var(--ddd-spacing-2); }
+        .wrapper { 
+          flex-direction: column; 
+          height: auto; 
+          gap: var(--ddd-spacing-4);
+          padding-bottom: var(--ddd-spacing-4);
+        }
+        h1 { font-size: var(--ddd-font-size-m); }
+        .logo { height: 40px; }
       }
     `];
   }
@@ -85,7 +148,12 @@ export class FrostHeader extends DDDSuper(LitElement) {
   render() {
     return html`
       <div class="wrapper">
-        <h1>FROSTBITE ACADEMY</h1>
+        <!-- Logo and Title clickable to go home -->
+        <a href="/" class="brand-container" @click="${(e) => this._handleClick(e, '/')}">
+          <img src="/logo.png" alt="Frostbite Academy Logo" class="logo" />
+          <h1>Frostbite Academy</h1>
+        </a>
+        
         <nav>
           ${this.items.map(item => html`
             <a 
