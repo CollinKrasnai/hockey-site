@@ -4,9 +4,9 @@
   "description": "Frostbite Hockey Academy Network",
   "type": "module",
   "scripts": {
-    "start": "vercel dev",
-    "build": "echo 'Build handled by Vercel static output'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "lit": "^3.1.0",
@@ -14,6 +14,6 @@
     "@haxtheweb/simple-cta": "latest"
   },
   "devDependencies": {
-    "vercel": "latest"
+    "vite": "^5.0.0"
   }
 }
