@@ -19,7 +19,6 @@ export class FrostStats extends DDDSuper(LitElement) {
       }
       .stat-grid {
         display: grid;
-        /* Changed to 4 columns to accommodate the new card */
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: var(--ddd-spacing-6);
         text-align: center;
@@ -71,7 +70,7 @@ export class FrostStats extends DDDSuper(LitElement) {
         </div>
 
         <div class="stat-box">
-          <div class="num">45</div>
+          <div class="num">62</div> <!-- Changed from 45 -->
           <div class="label">Goals For</div>
         </div>
         
