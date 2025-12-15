@@ -1,13 +1,16 @@
 {
   "name": "frostbite-hockey-site",
   "version": "1.0.0",
-  "description": "Youth sports site analysis and improvement",
+  "description": "Frostbite Hockey Academy Network",
+  "type": "module",
   "scripts": {
     "start": "vercel dev",
-    "build": "echo 'No build step required for this setup'"
+    "build": "echo 'Build handled by Vercel static output'",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "lit": "^3.1.0",
+    "@haxtheweb/d-d-d": "^11.0.5",
     "@haxtheweb/simple-cta": "latest"
   },
   "devDependencies": {
